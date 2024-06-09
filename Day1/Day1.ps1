@@ -5,24 +5,32 @@ param(
 
 [System.Collections.ArrayList]$lines = @();
 
-Get-Content -Path $(if ($inputtype -ne "sample") { "input.txt" } else { "sample.txt" }) `
+Get-Content -Path $(if ($inputtype -notmatch "sample") { "$($PSScriptRoot)\input.txt" } else { "$($PSScriptRoot)\$inputtype.txt" }) `
 | ForEach-Object {
     $lines.Add($_) | Out-Null
 };
 
 function part1 {
-    foreach ($l in $lines) {
-        Write-Host $l;
+    $chars = $lines[0].ToCharArray();
+    $nums = $chars | ForEach-Object { [int]([string]$_) }
+
+    [System.Int64]$sum = 0;
+    [System.Collections.ArrayList]$matchstack = @();
+
+    for ($i = 0; $i -lt $nums.length; $i++) {
+        $num = $nums[$i];
     }
 
-    Write-Host "part 1: <>";
+
+    # 1048 too low
+    # 5651 too high
+    Write-Host "part 1: <$sum>";
 }
     
 function part2 {
-    foreach ($l in $lines) {
-        Write-Host $l;
-    }
+    Write-Host "part 2: <>";
 }
-Write-Host "part 2: <>";
 
 part1;
+
+part2;

@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "PowerShell: Launch Current File",
+            "name": "PowerShell: Launch file",
             "type": "PowerShell",
             "request": "launch",
-            "script": "${file}",
-            "args": ["-inputtype 'sample'"]
+            "script": ".\\Day1\\Day1.ps1",
+            "args": ["-inputtype 'longsample'"]
         }
     ]
 }
