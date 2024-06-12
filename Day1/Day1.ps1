@@ -33,7 +33,23 @@ function part1 {
 }
     
 function part2 {
-    Write-Host "part 2: <>";
+    $chars = $lines[0].ToCharArray();
+    $nums = $chars | ForEach-Object { [int]([string]$_) }
+
+    [System.Int64]$sum2 = 0;
+
+    for ($i = 0; $i -lt $nums.length; $i++) {
+        $num = $nums[$i];
+        [int]$next = ($i + ($nums.length / 2)) % $nums.length;
+
+        # part2 sum
+        if ($num -eq $nums[$next]) {
+            $sum2 += $nums[$i]
+        }
+    }
+
+    # 1832 too highs
+    Write-Host "part 2: <$sum2>";
 }
 
 part1;
