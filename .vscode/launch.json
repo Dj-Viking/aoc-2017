@@ -8,8 +8,8 @@
             "name": "PowerShell: Launch file",
             "type": "PowerShell",
             "request": "launch",
-            "script": ".\\Day1\\Day1.ps1",
-            "args": ["-inputtype 'longsample'"]
+            "script": ".\\Day2\\Day2.ps1",
+            "args": ["-inputtype 'sample'"]
         }
     ]
 }
