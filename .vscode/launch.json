@@ -9,7 +9,7 @@
             "type": "PowerShell",
             "request": "launch",
             "script": ".\\Day2\\Day2.ps1",
-            "args": ["-inputtype 'sample'"]
+            "args": ["-inputtype 'sample2'"]
         }
     ]
 }

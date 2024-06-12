@@ -29,7 +29,7 @@ function part1 {
 
     # 1048 too low
     # 5651 too high
-    Write-Host "part 1: <$sum>";
+    Write-Host "part 1: <$sum>" -ForegroundColor Green;
 }
     
 function part2 {
@@ -49,7 +49,7 @@ function part2 {
     }
 
     # 1832 too highs
-    Write-Host "part 2: <$sum2>";
+    Write-Host "part 2: <$sum2>" -ForegroundColor Green;
 }
 
 part1;

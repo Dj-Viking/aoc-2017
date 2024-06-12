@@ -20,7 +20,7 @@ if (-not (Test-Path -Path ".\Day$day")) {
 
         [System.Collections.ArrayList]`$lines = @();
 
-        Get-Content -Path `$(if (`$inputtype -notmatch "sample") { "`$(`$PSScriptRoot)\input.txt" } else { "`$(`$PSScriptRoot)\sample.txt" }) ``
+        Get-Content -Path `$(if (`$inputtype -notmatch "sample") { "`$(`$PSScriptRoot)\input.txt" } else { "`$(`$PSScriptRoot)\`$inputtype.txt" }) ``
         | ForEach-Object {
             `$lines.Add(`$_) | Out-Null
         };
