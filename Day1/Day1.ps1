@@ -19,6 +19,12 @@ function part1 {
 
     for ($i = 0; $i -lt $nums.length; $i++) {
         $num = $nums[$i];
+        [int]$next = ($i + 1) % $nums.length;
+
+        # part1 sum
+        if ($num -eq $nums[$next]) {
+            $sum += $nums[$i];
+        }
     }
 
 
