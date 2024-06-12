@@ -15,7 +15,6 @@ function part1 {
     $nums = $chars | ForEach-Object { [int]([string]$_) }
 
     [System.Int64]$sum = 0;
-    [System.Collections.ArrayList]$matchstack = @();
 
     for ($i = 0; $i -lt $nums.length; $i++) {
         $num = $nums[$i];
