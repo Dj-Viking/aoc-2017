@@ -53,7 +53,7 @@ function part2 {
         $calcing = $true;
         while ($calcing) {
 
-            for ($j = 0; $j -lt $rownums.Count; $j++) {
+            :calcing for ($j = 0; $j -lt $rownums.Count; $j++) {
                 for ($i = 0; $i -lt $rownums.Count; $i++) {
                     $first = $rownums[$j];
                     $next_index = ($i + 1) % $rownums.Count;
@@ -68,7 +68,7 @@ function part2 {
                     if ($tuple[1] % $tuple[0] -eq 0) {
                         $answer2 += ($tuple[1] / $tuple[0]);
                         $calcing = $false;
-                        break;
+                        break calcing;
                     }
                     
                 }
@@ -76,7 +76,7 @@ function part2 {
         }
 
     }
-    Write-Host "answer2: <$($answer2 / 2)>" -ForegroundColor Green;
+    Write-Host "answer2: <$($answer2)>" -ForegroundColor Green;
 }
 
 part1;
