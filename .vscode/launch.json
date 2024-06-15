@@ -8,8 +8,8 @@
             "name": "PowerShell: Launch file",
             "type": "PowerShell",
             "request": "launch",
-            "script": ".\\Day3\\Day3.ps1",
-            "args": ["-inputtype ''"]
+            "script": ".\\Day4\\Day4.ps1",
+            "args": ["-inputtype 'sample'"]
         },
         { // this is used with dotnet-script package install with dotnet tool install -g dotnet-script
             "name": "cs script",
