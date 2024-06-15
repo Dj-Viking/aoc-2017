@@ -9,7 +9,7 @@
             "type": "PowerShell",
             "request": "launch",
             "script": ".\\Day4\\Day4.ps1",
-            "args": ["-inputtype 'sample'"]
+            "args": ["-inputtype 'sample2'"]
         },
         { // this is used with dotnet-script package install with dotnet tool install -g dotnet-script
             "name": "cs script",
