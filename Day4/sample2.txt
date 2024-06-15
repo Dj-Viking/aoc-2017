@@ -1,5 +1,3 @@
-abcde xyz ecdab
-abcde fghij
-a ab abc abd abf abj
-iiii oiii ooii oooi oooo
-oiii idii iioi iiio
+adcbe xyz ecdab
+abcde fghij xyz
+abcde fghij xyz abced

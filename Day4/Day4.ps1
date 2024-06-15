@@ -50,95 +50,79 @@ function part1 {
     Write-Host "part1: $valid";
 }
 
-function IsAnagramOf {
-    [OutputType([bool])]
-    param(
-        [string]$word1,
-        [string]$word2
-    )
-
-    $result = $false;
-
-    [System.Collections.Generic.Dictionary[char, int]]$d1 = @{};
-    [System.Collections.Generic.Dictionary[char, int]]$d2 = @{};
-
-    $word1.ToCharArray() | ForEach-Object {
-        if ($d1.ContainsKey($_)) {
-            $d1[$_] += 1;
-        }
-        else {
-            $d1[$_] = 1;
-        }
-    }
-
-    $word2.ToCharArray() | ForEach-Object {
-        if ($d2.ContainsKey($_)) {
-            $d2[$_] += 1;
-        }
-        else {
-            $d2[$_] = 1;
-        }
-    }
-
-    $matching = 0;
-    if ($d1.Keys.Count -eq $d2.Keys.Count) {
-        foreach ($key in $d1.Keys) {
-            if ($d1.ContainsKey($key) -and $d2.ContainsKey($key)) {
-                if ($d1[$key] -eq $d2[$key]) {
-                    $matching += 1;
-                }
-            }
-        }
-        if ($matching -eq $d1.Keys.Count) {
-            $result = $true;
-        }
-    }
-
-    return $result;
-
-}
 function part2 {
-    [int]$valid = 0;
-    $lines | ForEach-Object {
+
+    $ordered_line = $lines | ForEach-Object {
         [string]$l = $_;
 
         [string[]]$words = $l.Split("", [System.StringSplitOptions]::RemoveEmptyEntries);
 
-        [System.Collections.Generic.Dictionary[string, bool]]$wd = @{};
+        # order words alphabetically in the line
 
-        $words | ForEach-Object {
-            [string]$word = $_;
+        $words_ordered = [System.Linq.Enumerable]::OrderBy(
+            [string[]]$words, 
+            [Func[string, string]] { param($s) $s }
+        )
 
-            if (-not $wd.ContainsKey($word)) {
-                $wd[$word] = $false;
+        $words_ordered -join " "
+    }
+
+    $thing = $ordered_line | ForEach-Object {
+
+        [string]$l = $_;
+        [string[]]$line_words = $l.Split("", [System.StringSplitOptions]::RemoveEmptyEntries);
+
+        [System.Collections.ArrayList]$validlist = @();
+
+        :linewords for ($w = 0; $w -lt $line_words.Count; $w++) {
+            [char[]]$first = $line_words[0].ToCharArray();
+            [char[]]$next = $line_words[($w + 1) % $line_words.Count].ToCharArray();
+
+            $len = $first.Length;
+
+            if ($first.Length -ne $next.Length) {
+                $validlist += $true;
+
+                continue linewords;
             }
-        }
-        
-        $hasAnagram = $false;
-        :anagram for ($i = 0; $i -lt $words.Length; $i++) {
 
-            $first = $words[0];
-            $next_index = ($i + 1) % $words.Length;
+            # Sort chararrs
+            [System.Collections.ArrayList]$sortedFirst = @();
+            [System.Collections.ArrayList]$sortedNext = @();
 
-            if ($first -eq $words[$next_index]) {
-                continue;
+            foreach ($c in $first) { $sortedFirst += $c }
+            $sortedFirst.Sort();
+            foreach ($c in $next) { $sortedNext += $c }
+            $sortedNext.Sort();
+
+            # compare sorted chars
+
+            for ($i = 0; $i -lt $len; $i++) {
+                if ($sortedFirst[$i] -ne $sortedNext[$i]) {
+                    $validlist += $true;
+                    continue linewords;
+                }
             }
 
-            if (IsAnagramOf -word1 $first -word2 $words[$next_index]) {
-                $hasAnagram = $true;
-                break anagram;
-            }
+            # Write-Host "";
+
         }
 
-        if (-not $hasAnagram) {
-            $valid += 1;
+        if ($validlist.Count -eq $line_words.Count) {
+            return $true;
         }
-
 
     }
 
     # 423 too high
-    Write-Host "part2: $valid";
+
+    # why the fuck am i getting 43???
+
+    # should be 251??
+    Write-Host "part2: $(($thing | Where-Object { $_ -eq $true }).Length)";
+
+
+
 }
 
 part1;

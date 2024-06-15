@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "C#: program Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/Day4/program.csproj"
+        },
+        
+        {
             "name": "PowerShell: Launch file",
             "type": "PowerShell",
             "request": "launch",
@@ -14,8 +21,15 @@
         { // this is used with dotnet-script package install with dotnet tool install -g dotnet-script
             "name": "cs script",
             "type": "PowerShell",
-            "script": "& { dotnet script .\\Day3\\program.cs }",
+            "script": "& { dotnet script .\\Day4\\program.cs }",
             "request": "launch"
+        },
+        {
+            "name": "cs",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": ".\\Day4\\program.csproj",
+            "launchConfigurationId": "Debug"
         }
     ]
 }
