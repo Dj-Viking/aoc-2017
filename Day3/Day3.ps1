@@ -40,21 +40,20 @@ class Point {
         return "$($this.pt.X),$($this.pt.Y)";
     }
 
-    static [int]GetNborVal(
-        [Point]$pos, 
+    [int]GetNborVal(
         [System.Collections.Generic.Dictionary[string, int]]$memmap
     ) {
 
         [int]$val = 0;
         [System.Collections.ArrayList]$nbors = @();
 
-        [System.Linq.Enumerable]::Range($pos.pt.X - 1, 3) | ForEach-Object {
+        [System.Linq.Enumerable]::Range($this.pt.X - 1, 3) | ForEach-Object {
             [int]$xnum = $_;
 
-            [System.Linq.Enumerable]::Range($pos.pt.Y - 1, 3) | ForEach-Object {
+            [System.Linq.Enumerable]::Range($this.pt.Y - 1, 3) | ForEach-Object {
                 [int]$ynum = $_;
 
-                if (!($xnum -eq $pos.pt.X -and $ynum -eq $pos.pt.Y)) {
+                if (!($xnum -eq $this.pt.X -and $ynum -eq $this.pt.Y)) {
                     $nbors.Add([Point]::new($xnum, $ynum)) | Out-Null;
                 }
             }
@@ -98,7 +97,7 @@ function part2 {
     [int]$spiral_steps = 0;
 
     do {
-        [int]$val = [Point]::GetNborVal($cursor, $memorymap);
+        [int]$val = $cursor.GetNborVal($memorymap);
 
         if ($val -ge $input1) {
             $answer2 = $val;
